@@ -1,0 +1,36 @@
+﻿@page "/proveeList"
+@using CerrojoApp.Components.Css
+@inherits ProveeListBase
+@inject IJSRuntime JsRuntime
+
+<h3>Listado de Proveedores</h3>
+
+@if (Proveedores == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Telefono</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var provee in Proveedores)
+                {
+                    <tr>
+                        <td>@provee.Nombre</td>
+                        <td>@provee.Telefono</td> 
+                        <td>
+@*                             <button class="btn btn-secondary" @onclick="()=>Select(prod)">Modificar</button>
+ *@                        <button class="btn btn-danger" @onclick="()=>DeleteProvee(provee)">Eliminar</button>
+                    </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }

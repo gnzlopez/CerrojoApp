@@ -1,0 +1,39 @@
+﻿@using CerrojoApp.Components.Css
+@inherits MarcaFormBase
+
+<br />
+<h3>Marca</h3>
+<br />
+
+<EditForm Model="@Marca" OnValidSubmit="Save">
+
+    <DataAnnotationsValidator />
+    <div class="form-group row">
+        <label for="nombre" class="col-md-2 col-form-label">Nombre:</label>
+        <div class="col-md-10">
+            <InputText @bind-Value="Marca.Nombre" />
+            <ValidationMessage For="(() => Marca.Nombre)" />
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Guardar</button>
+</EditForm>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nombre</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var marca in Marcas)
+        {
+            <tr>
+                <td>@marca.Nombre</td>
+                <td>
+                    <button class="btn btn-danger" @onclick="()=>DeleteMarca(marca)">Eliminar</button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

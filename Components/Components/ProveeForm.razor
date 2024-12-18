@@ -1,0 +1,26 @@
+﻿@using CerrojoApp.Components.Css
+@inherits ProveeFormBase
+
+<br />
+<h3>Proveedor</h3>
+<br />
+
+<EditForm Model="@Proveedor" OnValidSubmit="Save">
+
+    <DataAnnotationsValidator />
+    <div class="form-group row">
+        <label for="nombre" class="col-md-2 col-form-label">Nombre:</label>
+        <div class="col-md-10">
+            <InputText @bind-Value="Proveedor.Nombre" />
+            <ValidationMessage For="(() => Proveedor.Nombre)" />
+        </div>
+    </div>
+    <div class="form-group row">
+        <label for="stock" class="col-md-2 col-form-label">Telefono:</label>
+        <div class="col-md-10">
+            <InputNumber @bind-Value="Proveedor.Telefono" />
+        </div>
+    </div>
+    <button class="btn btn-primary" type="submit">Guardar</button>
+</EditForm>
+

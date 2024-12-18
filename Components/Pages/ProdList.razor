@@ -1,0 +1,53 @@
+﻿@page "/"
+@using CerrojoApp.Components.Css
+@using CerrojoApp.Components.Components
+@inherits ProdListBase
+@inject IJSRuntime JsRuntime
+
+@if (showFormComponent == true)
+{
+    <ProductForm SelectedProduct="@selectedProduct" ReturnUpd="ReturnUpdate"></ProductForm>
+}
+else {
+
+    <h3>Listado de Productos</h3>
+    @if (Products == null)
+    {
+        <p><em>Loading...</em></p>
+    }
+    else
+    {
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nombre</th>
+                    <th>Stock</th>
+                    <th>Precio</th>
+                    <th>Marca</th>
+                    <th>Proveedor</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var prod in Products)
+                {
+                    <tr>
+                        <td>@prod.Nombre</td>
+                        <td>@prod.Stock</td>
+                        <td>@prod.Precio</td>
+                        <td>@prod.MarcaName</td>
+                        <td>@prod.ProveedorName</td>  
+                        <td><button class="btn btn-secondary" @onclick="()=>Select(prod)">Modificar</button>
+                        <button class="btn btn-danger" @onclick="()=>DeleteProd(prod)">Eliminar</button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    }
+}
+
+
+
+
+@code {
+}

@@ -1,0 +1,64 @@
+﻿@using CerrojoApp.Components.Css
+@inherits ProductFormBase
+
+<br />
+<h3>Producto</h3>
+<br />
+
+<EditForm Model="@SelectedProduct" OnValidSubmit="Save">
+
+    <DataAnnotationsValidator />
+    <div class="form-group row">
+        <label for="nombre" class="col-md-2 col-form-label">Nombre:</label>
+        <div class="col-md-10">
+            <InputText @bind-Value="SelectedProduct.Nombre" />
+            <ValidationMessage For="(() => SelectedProduct.Nombre)" />
+        </div>
+    </div>
+    <br />
+    <div class="form-group row">
+        <label for="stock" class="col-md-2 col-form-label">Stock:</label>
+        <div class="col-md-10">
+            <InputNumber @bind-Value="SelectedProduct.Stock" />
+            <ValidationMessage For="(() => SelectedProduct.Stock)" />
+        </div>
+    </div>
+    <br />
+    <div class="form-group row">
+        <label for="precio" class="col-md-2 col-form-label">Precio:</label>
+        <div class="col-md-10">
+            <InputNumber @bind-Value="SelectedProduct.Precio" Format="N2"/>
+            <ValidationMessage For="(() => SelectedProduct.Precio)" />
+        </div>
+    </div>
+    <br />
+    <div class="form-group row">
+        <label for="precio" class="col-md-2 col-form-label">Marca:</label>
+        <div class="col-md-10" >
+            <InputSelect @bind-Value="SelectedProduct.MarcaId" class="form-control">
+                @foreach (var marca in Marcas)
+                {
+                    <option value="@marca.Id">@marca.Nombre</option>
+                }
+            </InputSelect> 
+        </div>
+    </div>
+    <br />
+    <div class="form-group row">
+        <label for="precio" class="col-md-2 col-form-label">Proveedor:</label>
+        <div class="col-md-10" >
+            <InputSelect @bind-Value="SelectedProduct.ProveedorId" class="form-control">
+                @foreach (var provee in Provees)
+                {
+                    <option value="@provee.Id">@provee.Nombre | @provee.Telefono</option>
+                }
+            </InputSelect> 
+        </div>
+    </div>
+    <br />
+    <button class="m-2 btn btn-primary" type="submit">Guardar</button>
+    @if (SelectedProduct.Id > 0)
+    {
+        <button class="m-2 btn btn-danger" type="reset" @onclick="()=>CancelUpd()">Cancelar</button>
+    }
+</EditForm>
